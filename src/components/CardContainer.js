@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Card from './Card';
-import Pusheens from "./../pusheens.json"
+import Cars from "./../cars.json"
 //import shuffle from "shuffle-array";
 
 class CardContainer extends Component {
@@ -8,30 +8,30 @@ class CardContainer extends Component {
     constructor(props) {
         super(props);
 
-        // setting the state: score is at 1, pusheens is pulling in the pusheen json, and we have no selected pusheens yet
+        // setting the state: score is at 1,Cars is pulling in the cars json, and we have no selected Cars yet
         this.state = {
             score: 1,
-            pusheens: Pusheens,
-            selectedPusheens: []
+           Cars:Cars,
+            selectedCars: []
         };
     }
 
     
-    // when the user clicks on a pusheen card
+    // when the user clicks on a cars card
     handleClick = (e) => {
 
-        // grab the selected pusheen's id
+        // grab the selected cars' id
         let id = e.target.id;
 
-        // init variable that sees if the user selects a pusheen that's already in selectedpusheens
+        // init variable that sees if the user selects a pusheen that's already in selectedcars
         let exists = false;
 
-        // loop through selected pusheens and see if any ids match selected id
-        this.state.selectedPusheens.forEach(pusheen => {
+        // loop through selectedCars and see if any ids match selected id
+        this.state.selectedCars.forEach(cars => {
 
             // if id matches
             // eslint-disable-next-line
-            if (pusheen.id == id) {
+            if (cars.id == id) {
  
                 // change exists to true
                 exists = true;
@@ -46,14 +46,14 @@ class CardContainer extends Component {
 
         // otherwise
         else {
-            // loop through the pusheen json
-            this.state.pusheens.forEach(pusheen => {
-                // if the pusheen id matches the selected id
+            // loop through the cars json
+            this.state.cars.forEach(cars => {
+                // if the cars id matches the selected id
                 // eslint-disable-next-line
-                if (pusheen.id == id) {
-                    // add the pusheen to the selected pusheen array
-                    this.setState({selectedPusheens: [...this.state.selectedPusheens, pusheen]});
-                    console.log(this.state.selectedPusheens);
+                if (cars.id == id) {
+                    // add the cars to the selected cars array
+                    this.setState({selectedCars: [...this.state.selectedCars, cars]});
+                    console.log(this.state.selectedCars);
 
                     // update the score
                     this.updateScore();
@@ -62,9 +62,9 @@ class CardContainer extends Component {
         }
         
 
-        // SHUFFLE THE PUSHEENS
-        //this.setState({ pusheens: shuffle(this.state.pusheens)});
-        console.log("Shuffling Pusheens");
+        // SHUFFLE THE Cars
+        //this.setState({Cars: shuffle(this.state.cars)});
+        console.log("Shuffling Cars");
 
     }
 
@@ -83,7 +83,7 @@ class CardContainer extends Component {
         // push the current game score as the new top score 
         this.props.updateTopScore(this.state.score);
         // set the score back to 1 and the selected array to empty 
-        this.setState({score: 1, selectedPusheens: []});
+        this.setState({score: 1, selectedCars: []});
         // update the current score to 0
         this.props.updateCurrentScore(0);
     }
@@ -92,7 +92,7 @@ class CardContainer extends Component {
         return (
             <div className="container" id="card-container">
                 <div className="row">
-                    {Pusheens.map(pusheen => <Card src={pusheen.image} key={pusheen.id} id={pusheen.id} alt={pusheen.name} endGame={this.endGame} handleClick={this.handleClick} score={this.state.score} />)}
+                    {Cars.map(cars => <Card src={cars.image} key={cars.id} id={cars.id} alt={cars.name} endGame={this.endGame} handleClick={this.handleClick} score={this.state.score} />)}
                 </div>
             </div>
         );

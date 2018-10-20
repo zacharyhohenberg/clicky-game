@@ -1,1 +1,1 @@
-This is a front end memory application where the user will begin by clicking on a gif. The gif's will regenerate in a new order and the idea is to not click the same gif twice. Once the winner reaches 10 the game will reset or if the player clicks the same gif twice the game will reset.
+This is a front end memory application where the user will begin by clicking on a gif. The gif's will regenerate in a new order and the idea is to not click the same gif twice. The game will reset with a new high score once the play clicks the same image twice. 
